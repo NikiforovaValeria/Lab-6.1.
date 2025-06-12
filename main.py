@@ -5,7 +5,7 @@
 # по третьей - 2 работникам независимо от пола. Сформировать все возможные варианты заполнения вакантных мест,
 # если имеются 6 претендентов: 3 женщины и 3 мужчины.
 
-import time
+from timeit import default_timer # импорта наиболее точного таймера из модуля timeit
 from itertools import combinations
 # Претенденты
 women = ['Ж1', 'Ж2', 'Ж3'] # список женщин
@@ -13,7 +13,7 @@ men = ['М1', 'М2', 'М3'] # список мужчин
 
 # Вариант 1: Алгоритмический способ
 print("\nВариант 1: Алгоритмический")
-start_time = time.time()
+start_time = default_timer()
 all_combinations_manual = []
 # Перебираем все пары женщин
 for women_pair in combinations(women, 2):
@@ -31,15 +31,15 @@ for women_pair in combinations(women, 2):
             'специальность 2': list(men_pair),
             'специальность 3': remaining
         })
-end_time = time.time()
+end_time = default_timer()
 print(f"Всего комбинаций (алгоритмический): {len(all_combinations_manual)}")
 for idx, combo in enumerate(all_combinations_manual, 1):
     print(f"{idx}. {combo}")
-print(f"Время выполнения (алгоритмический): {end_time - start_time:.6f} секунд\n")
+print(f"Время выполнения (алгоритмический): {(end_time - start_time)*10} секунд\n")
 
 # Вариант 2: С помощью функций Питона
 print("\nВариант 2: Через itertools")
-start_time = time.time()
+start_time = default_timer()
 all_combinations_itertools = []
 # Цикл по женщинам: выбирается пара женщин
 for w_comb in combinations(women, 2):
@@ -57,8 +57,8 @@ for w_comb in combinations(women, 2):
             'специальность 2': list(m_comb),
             'специальность 3': rem
         })
-end_time = time.time()
+end_time = default_timer()
 print(f"Всего комбинаций (itertools): {len(all_combinations_itertools)}")
 for idx, combo in enumerate(all_combinations_itertools, 1):
     print(f"{idx}. {combo}")
-print(f"Время выполнения (itertools): {end_time - start_time:.6f} секунд")
+print(f"Время выполнения (itertools): {(end_time - start_time)*10} секунд")
